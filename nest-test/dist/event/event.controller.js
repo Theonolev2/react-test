@@ -15,12 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventController = void 0;
 const common_1 = require("@nestjs/common");
 const create_event_dto_1 = require("./create-event.dto");
+const event_service_1 = require("./event.service");
 let EventController = class EventController {
+    constructor(eventService) {
+        this.eventService = eventService;
+    }
     async create(CreateEventDto) {
         console.log(CreateEventDto);
-        return 'This action adds a new event';
+        this.eventService.createEvent(CreateEventDto.name, CreateEventDto.date);
+        return 'This action creates all events';
     }
     findAll() {
+        this.eventService.getAllEvents();
         return 'This action returns all events';
     }
     findOne(params) {
@@ -59,6 +65,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "remove", null);
 exports.EventController = EventController = __decorate([
-    (0, common_1.Controller)('event')
+    (0, common_1.Controller)('event'),
+    __metadata("design:paramtypes", [event_service_1.EventService])
 ], EventController);
 //# sourceMappingURL=event.controller.js.map

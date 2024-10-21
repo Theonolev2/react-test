@@ -1,21 +1,12 @@
 import { Module } from '@nestjs/common';
-// import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Event } from './event.entity';
 import { EventController } from './event.controller';
+import { EventService } from './event.service';
 
 @Module({
-  // imports: [
-  //   TypeOrmModule.forRoot({
-  //     type: 'postgres',
-  //     host: 'localhost',
-  //     port: 5432,
-  //     username: 'postgres',
-  //     password: '',
-  //     database: 'mydb',
-  //     entities: [],
-  //     synchronize: true,
-  //   }),
-  // ],
+  imports: [TypeOrmModule.forFeature([Event])],
   controllers: [EventController],
-  providers: [],
+  providers: [EventService],
 })
 export class EventModule {}

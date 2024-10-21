@@ -1,16 +1,21 @@
 import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
 import { CreateEventDto } from './create-event.dto';
+import { EventService } from './event.service';
 
 @Controller('event')
 export class EventController {
+  constructor(private readonly eventService: EventService) {}
+
   @Post()
   async create(@Body() CreateEventDto: CreateEventDto): Promise<string> {
-    console.log(CreateEventDto);
-    return 'This action adds a new event';
+    this.eventService.createEvent(CreateEventDto.name, CreateEventDto.date);
+    return 'This action creates all events';
   }
 
   @Get()
   findAll(): string {
+    const events = this.eventService.getAllEvents();
+    console.log(events);
     return 'This action returns all events';
   }
 
