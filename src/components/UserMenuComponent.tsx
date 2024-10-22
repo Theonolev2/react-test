@@ -1,17 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
   console.log("test")
-  event.preventDefault();
-  alert('You clicked me!');
+  // event.preventDefault();
 }
 
-const UserMenu = () => {
+const UserMenu: React.FC = () => {
   return(
     <div className="user-menu" onClick={handleClick}>
-      <p>User</p>
+      <Link to="/new-user">User</Link>
     </div>
   )
 };
 
-  export default UserMenu;
+export default UserMenu;
