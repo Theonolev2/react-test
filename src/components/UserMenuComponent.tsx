@@ -1,9 +1,15 @@
 import React from 'react';
 
+const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  console.log("test")
+  event.preventDefault();
+  alert('You clicked me!');
+}
+
 const UserMenu = () => {
   return(
-    <div className="user-menu">
-      <a className="btn btn-primary" href="#">User</a>
+    <div className="user-menu" onClick={handleClick}>
+      <p>User</p>
     </div>
   )
 };
